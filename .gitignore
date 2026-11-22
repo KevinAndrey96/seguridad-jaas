@@ -1,0 +1,15 @@
+# Build & distribution binaries
+build/
+dist/
+*.class
+*.war
+*.ear
+
+# IDE metadata
+nbproject/private/
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
