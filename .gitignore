@@ -1,15 +1,22 @@
-# Build & distribution binaries
-build/
-dist/
+# Compiled binaries & artifacts
 *.class
 *.war
 *.ear
+build/
+dist/
+bin/
 
-# IDE metadata
-nbproject/private/
+# IDE files (NetBeans, Eclipse, IntelliJ, VS Code)
+nbproject/
 .idea/
 *.iml
+.project
+.classpath
+.settings/
 .vscode/
 
-# OS
+# OS metadata
 .DS_Store
+Thumbs.db
+desktop.ini
+*/desktop.ini

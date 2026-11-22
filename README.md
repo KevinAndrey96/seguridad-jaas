@@ -63,6 +63,8 @@ seguridad-jaas/
 ├── web/
 │   ├── WEB-INF/
 │   │   └── web.xml               # Descriptores de despliegue, login-config y security-constraints
+│   ├── META-INF/
+│   │   └── context.xml           # Configuración de contexto del contenedor servlet
 │   ├── secure/                   # Directorio raíz protegido
 │   │   ├── compras/              # Vistas protegidas para área de compras
 │   │   ├── nominas/              # Vistas protegidas para área de nóminas
@@ -71,7 +73,6 @@ seguridad-jaas/
 │   ├── login.jsp                 # Formulario de inicio de sesión
 │   ├── error.jsp                 # Manejador visual de errores HTTP 403 / 400
 │   └── index.jsp                 # Bienvenida y redirección
-├── build.xml                     # Script de construcción Ant
 └── README.md
 ```
 
