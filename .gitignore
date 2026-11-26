@@ -1,22 +1,6 @@
-# Compiled binaries & artifacts
-*.class
-*.war
-*.ear
-build/
-dist/
-bin/
-
-# IDE files (NetBeans, Eclipse, IntelliJ, VS Code)
-nbproject/
+target/
 .idea/
-*.iml
-.project
-.classpath
-.settings/
 .vscode/
-
-# OS metadata
+*.iml
 .DS_Store
-Thumbs.db
-desktop.ini
-*/desktop.ini
+config/users.xml
