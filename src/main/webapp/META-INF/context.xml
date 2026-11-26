@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Users live outside the application in a tomcat-users style file whose path comes from the
+  users.file system property. Passwords are PBKDF2 hashes; scripts/hash-password.sh produces them.
+  LockOutRealm blocks a user for five minutes after five failed attempts. The landing page lets a
+  login form posted without a prior protected request end on the menu instead of an HTTP 400.
+-->
+<Context>
+    <CookieProcessor sameSiteCookies="strict"/>
+    <Valve className="org.apache.catalina.authenticator.FormAuthenticator" landingPage="/secure/menu"/>
+    <Realm className="org.apache.catalina.realm.LockOutRealm" failureCount="5" lockOutTime="300">
+        <Realm className="org.apache.catalina.realm.MemoryRealm" pathname="${users.file}">
+            <CredentialHandler className="org.apache.catalina.realm.SecretKeyCredentialHandler"
+                               algorithm="PBKDF2WithHmacSHA512"
+                               iterations="210000"
+                               keyLength="256"
+                               saltLength="16"/>
+        </Realm>
+    </Realm>
+</Context>

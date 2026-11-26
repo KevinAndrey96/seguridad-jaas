@@ -1,0 +1,41 @@
+:root {
+    color-scheme: light dark;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    width: min(42rem, 100% - 2rem);
+    padding: 2rem 0;
+}
+
+form {
+    display: grid;
+    gap: 0.5rem;
+    max-width: 20rem;
+}
+
+input,
+button {
+    font: inherit;
+    padding: 0.5rem;
+}
+
+li.permitido::marker {
+    content: "✔ ";
+    color: #2e7d32;
+}
+
+li.denegado::marker {
+    content: "✘ ";
+    color: #c62828;
+}
+
+li.denegado a {
+    color: GrayText;
+}

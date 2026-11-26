@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Iniciar sesión | Sistema de gestión</title>
+    <link rel="stylesheet" href="/estilos.css">
+</head>
+<body>
+<main>
+    <h1>Sistema de gestión</h1>
+    <form method="post" action="j_security_check">
+        <label for="usuario">Usuario</label>
+        <input id="usuario" type="text" name="j_username" autocomplete="username" required>
+        <label for="clave">Contraseña</label>
+        <input id="clave" type="password" name="j_password" autocomplete="current-password" required>
+        <button type="submit">Iniciar sesión</button>
+    </form>
+</main>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_1.xsd"
+         version="6.1"
+         metadata-complete="true">
+
+    <display-name>Sistema de gestión con seguridad declarativa</display-name>
+
+    <filter>
+        <filter-name>securityHeaders</filter-name>
+        <filter-class>com.kevinandrey.rbac.SecurityHeadersFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>securityHeaders</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>menu</servlet-name>
+        <servlet-class>com.kevinandrey.rbac.MenuServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>menu</servlet-name>
+        <url-pattern>/secure/menu</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>modules</servlet-name>
+        <servlet-class>com.kevinandrey.rbac.ModuleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>modules</servlet-name>
+        <url-pattern>/secure/compras/*</url-pattern>
+        <url-pattern>/secure/nominas/*</url-pattern>
+        <url-pattern>/secure/ventas/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>com.kevinandrey.rbac.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/secure/salir</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>forbidden</servlet-name>
+        <servlet-class>com.kevinandrey.rbac.ForbiddenServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>forbidden</servlet-name>
+        <url-pattern>/acceso-denegado</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/acceso-denegado</location>
+    </error-page>
+
+    <!-- Any signed in user with one of the four roles: menu, logout and unknown module paths. -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>authenticated</web-resource-name>
+            <url-pattern>/secure/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>AC</role-name>
+            <role-name>GC</role-name>
+            <role-name>GN</role-name>
+            <role-name>GV</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>authorize-purchases</web-resource-name>
+            <url-pattern>/secure/compras/autorizar</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>AC</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>manage-purchases</web-resource-name>
+            <url-pattern>/secure/compras/gestion</url-pattern>
+            <url-pattern>/secure/compras/proveedores</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>GC</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>payroll</web-resource-name>
+            <url-pattern>/secure/nominas/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>GN</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>sales</web-resource-name>
+            <url-pattern>/secure/ventas/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>GV</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <deny-uncovered-http-methods/>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>sistema-de-gestion</realm-name>
+        <form-login-config>
+            <form-login-page>/login.html</form-login-page>
+            <form-error-page>/login-error.html</form-error-page>
+        </form-login-config>
+    </login-config>
+
+    <security-role>
+        <description>Autorización de compras</description>
+        <role-name>AC</role-name>
+    </security-role>
+    <security-role>
+        <description>Gestión de compras</description>
+        <role-name>GC</role-name>
+    </security-role>
+    <security-role>
+        <description>Gestión de nóminas</description>
+        <role-name>GN</role-name>
+    </security-role>
+    <security-role>
+        <description>Gestión de ventas</description>
+        <role-name>GV</role-name>
+    </security-role>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
+</web-app>
