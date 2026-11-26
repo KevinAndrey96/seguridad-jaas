@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Demo users only. Each password is the user name followed by "-demo" (for example ventas-demo).
+  Generate real hashes with scripts/hash-password.sh and keep the real file out of version control.
+-->
+<tomcat-users>
+  <user username="autoriza" roles="AC"
+        password="ef755d496151d124beb6b30f7209ed0e$210000$04657b6cad4d3ba44e07408a66cc1e5c210560f2d2c1c5df345411ae5c05b017"/>
+  <user username="compras" roles="GC"
+        password="801ac27defb0261327cb9056ffd5c10f$210000$ad403fa3621d167d9b119d224f36fc94385d88d3ceae8a82e9de663ef1e9df9d"/>
+  <user username="nominas" roles="GN"
+        password="53537012dc3517b334b7a2ab6b7453e0$210000$5c17955c0397b8054a318e868d37dc48a82c207497001128179e2d3a6964b0dd"/>
+  <user username="ventas" roles="GV"
+        password="746ac037c5e8da2ea68ef80fe6a4a8ff$210000$837ab2edb5ae234ca209583b02174d1da2b375edd6812ccf8a4bb4fc959f3ec5"/>
+  <user username="gerencia" roles="GC,GN"
+        password="d5e45a6697e61b035af6027e8b6e8010$210000$dc567a7a7aa297247125a8a57053f1b416d072e6ed3c63a3065dbccca8ba3c0e"/>
+</tomcat-users>
